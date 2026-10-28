@@ -12,9 +12,9 @@
 
 [andrgv.github.io/Project5-WebGPU-Gaussian-Splat-Viewer](https://andrgv.github.io/Project5-WebGPU-Gaussian-Splat-Viewer/)
 
-### Demo Video/GIF
+### Demo Video
 
-[![](img/video.mp4)![1793139207961](image/README/demo-tiny.gif)](TODO)
+[Video link](image/README/demo.mp4)
 
 ### Project description
 

@@ -14,7 +14,7 @@
 
 ### Demo Video/GIF
 
-[![](img/video.mp4)![1793139207961](image/README/demo-small.gif)](TODO)
+[![](img/video.mp4)![1793139207961](image/README/demo-tiny.gif)](TODO)
 
 ### Project description
 

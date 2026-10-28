@@ -19,6 +19,7 @@ const SH_C3 = array<f32,7>(
 
 override workgroupSize: u32;
 override sortKeyPerThread: u32;
+override enableFrustumCulling: u32;
 
 struct DispatchIndirect {
     dispatch_x: atomic<u32>,
@@ -175,7 +176,7 @@ fn preprocess(@builtin(global_invocation_id) gid: vec3<u32>, @builtin(num_workgr
 
     let ndc = clip.xyz / clip.w;
 
-    if (ndc.z < 0 || ndc.z > 1) {
+    if (enableFrustumCulling != 0 && (ndc.z < 0 || ndc.z > 1)) {
         return;
     }
 
@@ -229,7 +230,7 @@ fn preprocess(@builtin(global_invocation_id) gid: vec3<u32>, @builtin(num_workgr
     let radius_px = ceil(3 * sqrt(max(lambda, 0)));
     let radius = max(2 * radius_px / camera.viewport.x, 2 * radius_px / camera.viewport.y);
 
-    if (abs(ndc.x) > 1.2 + radius || abs(ndc.y) > 1.2 + radius) {
+    if (enableFrustumCulling != 0 && (abs(ndc.x) > 1.2 + radius || abs(ndc.y) > 1.2 + radius)) {
         return;
     }
     // Using spherical harmonics coeffiecients to evaluate the color of the gaussian from particular view direction
@@ -249,7 +250,7 @@ fn preprocess(@builtin(global_invocation_id) gid: vec3<u32>, @builtin(num_workgr
     sort_indices[output_idx] = output_idx;
     sort_depths[output_idx] = bitcast<u32>(1 - ndc.z);
 
-    let keys_per_dispatch = workgroupSize * sortKeyPerThread; 
+    let keys_per_dispatch = 256 * sortKeyPerThread; // radix sort set 256 fixed histogram workgroup size
     // increment DispatchIndirect.dispatchx each time you reach limit for one dispatch of keys
     if (output_idx % keys_per_dispatch == 0u) {
         atomicAdd(&sort_dispatch.dispatch_x, 1u);

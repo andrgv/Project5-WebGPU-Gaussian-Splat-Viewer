@@ -8,6 +8,10 @@ export interface GaussianRenderer extends Renderer {
   setGaussianScaling: (scale: number) => void;
 }
 
+// perfomance analysis
+const WORKGROUP_SIZE = 256;
+const ENABLE_FRUSTUM_CULLING = 1;
+
 // Utility to create GPU buffers
 const createBuffer = (
   device: GPUDevice,
@@ -69,8 +73,9 @@ export default function get_renderer(
       module: device.createShaderModule({ code: preprocessWGSL }),
       entryPoint: 'preprocess',
       constants: {
-        workgroupSize: C.histogram_wg_size,
+        workgroupSize: WORKGROUP_SIZE,
         sortKeyPerThread: c_histogram_block_rows,
+        enableFrustumCulling: ENABLE_FRUSTUM_CULLING,
       },
     },
   });
@@ -184,7 +189,7 @@ export default function get_renderer(
       compute_pass.setBindGroup(2, sort_bind_group);
 
       compute_pass.dispatchWorkgroups(
-        Math.ceil(pc.num_points / C.histogram_wg_size)
+        Math.ceil(pc.num_points / WORKGROUP_SIZE)
       );
 
       compute_pass.end();

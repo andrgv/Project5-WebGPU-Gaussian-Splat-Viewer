@@ -14,9 +14,11 @@
 
 ### Demo Video/GIF
 
-[![](img/video.mp4)![1793139207961](image/README/1793139207961.gif)](TODO)
+[![](img/video.mp4)![1793139207961](image/README/demo-small.gif)](TODO)
 
 ### Project description
+
+This is an implementation of Gaussian splat rendering and point-cloud view of scenes in WebGPU. This Gaussian renderer projects and culls, splat, sorts visible splats by depth and draws them with view-dependent color and alpha blending. The viewer allows visualization of custom PLY scenes, camera presets and control of the size of the Gaussian splats.
 
 ### Performance Analysis
 

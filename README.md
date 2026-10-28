@@ -14,7 +14,7 @@
 
 ### Demo Video
 
-[Video link](image/README/demo.mp4)
+[Video link](https://drive.google.com/file/d/1L29ZY80KeGqmpxXrgGXSRK9dJAWq3_Zl/view?usp=sharing)
 
 ### Project description
 

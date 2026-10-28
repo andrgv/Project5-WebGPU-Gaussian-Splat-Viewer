@@ -10,7 +10,7 @@
 
 ### Live Demo
 
-[andrgv.gitub.io/Project5-WebGPU-Gaussian-Splat-Viewer](https://andrgv.github.io/Project5-WebGPU-Gaussian-Splat-Viewer/)
+[andrgv.github.io/Project5-WebGPU-Gaussian-Splat-Viewer](https://andrgv.github.io/Project5-WebGPU-Gaussian-Splat-Viewer/)
 
 ### Demo Video/GIF
 
